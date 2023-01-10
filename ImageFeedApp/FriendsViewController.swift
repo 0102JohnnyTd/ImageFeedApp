@@ -7,11 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class FriendsViewController: UIViewController {
+    private var collectionView: UICollectionView!
+    private var flowLayout: ColumnFlowLayout!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
     }
 
 
