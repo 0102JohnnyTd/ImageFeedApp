@@ -19,6 +19,10 @@ class PersonCell: UICollectionViewCell {
     let noteLabel = UILabel()
     let updateIndicator = UIView()
 
+    override init(frame: CGRect) {
+        super.init(frame: CGRect(x: .zero, y: .zero, width: 300, height: 150))
+    }
+
     // 🍎requiredは必須だが、イニシャライザはもとより必須では？どんな意味があるんだろう。
     required init?(coder: NSCoder) {
         super.init(coder: coder)
