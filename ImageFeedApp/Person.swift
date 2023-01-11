@@ -36,6 +36,12 @@ struct Person: CustomStringConvertible {
         }
     }
 
+    var isUpdated: Bool? {
+        didSet {
+            lastUpdate = Date()
+        }
+    }
+
     var description: String {
         if let name = self.name {
             return "<\(type(of: self)): name = \(name)>"
