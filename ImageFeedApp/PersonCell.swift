@@ -22,7 +22,7 @@ class PersonCell: UICollectionViewCell {
     // 🍎requiredは必須だが、イニシャライザはもとより必須では？どんな意味があるんだろう。
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-
+        
         self.clipsToBounds = true
         self.autoresizesSubviews = true
 
