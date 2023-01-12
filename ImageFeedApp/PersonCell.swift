@@ -19,14 +19,10 @@ class PersonCell: UICollectionViewCell {
     let noteLabel = UILabel()
     let updateIndicator = UIView()
 
+    // StoryboardやXIBファイルを使用せず、コードでViewを生成する場合はinit(coder:)ではなくinit(frame:)のイニシャライザが呼ばれる
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: .zero, y: .zero, width: 300, height: 150))
-    }
 
-    // 🍎requiredは必須だが、イニシャライザはもとより必須では？どんな意味があるんだろう。
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
         self.clipsToBounds = true
         self.autoresizesSubviews = true
 
@@ -74,6 +70,10 @@ class PersonCell: UICollectionViewCell {
         labelStackView.addArrangedSubview(noteLabel)
 
         setUpConstraints(labelStackView: labelStackView)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // Cell上のオブジェクトにAutoLayoutを設定
