@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1CB70C02296E9B3D00529D23 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB70C01296E9B3D00529D23 /* PersonCell.swift */; };
+		1CB70C0429701A4800529D23 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB70C0329701A4800529D23 /* FeedViewController.swift */; };
+		1CB70C0629701ADA00529D23 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB70C0529701ADA00529D23 /* AvatarView.swift */; };
 		1CEE1C47296A55110091535D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE1C46296A55110091535D /* AppDelegate.swift */; };
 		1CEE1C49296A55110091535D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE1C48296A55110091535D /* SceneDelegate.swift */; };
 		1CEE1C4B296A55110091535D /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE1C4A296A55110091535D /* FriendsViewController.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		1CB70C01296E9B3D00529D23 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		1CB70C0329701A4800529D23 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		1CB70C0529701ADA00529D23 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		1CEE1C43296A55110091535D /* ImageFeedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEE1C46296A55110091535D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CEE1C48296A55110091535D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CB70C072970479800529D23 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				1CEE1C5A296AFF410091535D /* ColumnFlowLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		1CB70C08297047C000529D23 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1CB70C01296E9B3D00529D23 /* PersonCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1CB70C09297047C800529D23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1CEE1C62296D6A970091535D /* Person.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1CB70C0A297047CD00529D23 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1CEE1C5E296D41FF0091535D /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1CB70C0B2970482C00529D23 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				1CB70C0529701ADA00529D23 /* AvatarView.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		1CEE1C3A296A55110091535D = {
 			isa = PBXGroup;
 			children = (
@@ -66,11 +110,13 @@
 			children = (
 				1CEE1C46296A55110091535D /* AppDelegate.swift */,
 				1CEE1C48296A55110091535D /* SceneDelegate.swift */,
-				1CEE1C5A296AFF410091535D /* ColumnFlowLayout.swift */,
-				1CB70C01296E9B3D00529D23 /* PersonCell.swift */,
-				1CEE1C62296D6A970091535D /* Person.swift */,
-				1CEE1C5E296D41FF0091535D /* Utilities.swift */,
+				1CB70C0329701A4800529D23 /* FeedViewController.swift */,
 				1CEE1C4A296A55110091535D /* FriendsViewController.swift */,
+				1CB70C0B2970482C00529D23 /* Controls */,
+				1CB70C072970479800529D23 /* Layouts */,
+				1CB70C08297047C000529D23 /* Cells */,
+				1CB70C09297047C800529D23 /* Model */,
+				1CB70C0A297047CD00529D23 /* Utilities */,
 				1CEE1C4C296A55110091535D /* Main.storyboard */,
 				1CEE1C4F296A55170091535D /* Assets.xcassets */,
 				1CEE1C51296A55170091535D /* LaunchScreen.storyboard */,
@@ -156,6 +202,8 @@
 				1CEE1C47296A55110091535D /* AppDelegate.swift in Sources */,
 				1CEE1C63296D6A970091535D /* Person.swift in Sources */,
 				1CEE1C49296A55110091535D /* SceneDelegate.swift in Sources */,
+				1CB70C0429701A4800529D23 /* FeedViewController.swift in Sources */,
+				1CB70C0629701ADA00529D23 /* AvatarView.swift in Sources */,
 				1CB70C02296E9B3D00529D23 /* PersonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

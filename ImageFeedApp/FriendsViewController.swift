@@ -21,7 +21,7 @@ final class FriendsViewController: UIViewController {
         // UICollectionViewクラスのインスタンスを生成
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = UIColor.appBackgroundColor
+        collectionView.backgroundColor = .appBackgroundColor
         collectionView.alwaysBounceVertical = true
         view.addSubview(collectionView)
 
