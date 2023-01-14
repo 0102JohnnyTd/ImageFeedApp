@@ -16,7 +16,16 @@ final class ColumnFlowLayout: UICollectionViewFlowLayout {
         guard let cv = collectionView else { return }
 
         // 🍏左右両端+8した上での残りの幅の値を返す値？
-        self.itemSize = CGSize(width: cv.bounds.inset(by: cv.layoutMargins).size.width, height: 70.0)
+        let availableWidth = cv.bounds.inset(by: cv.layoutMargins).size.width
+        // 列の最低幅を決める任意の値
+        let minColumnWidth = CGFloat(300)
+        // 最大列数
+        let maxNumColumns = availableWidth / minColumnWidth
+        // 少数を切り捨てたmaxNumColumnsで　availableWidthを割ってCellの幅を取得
+        let cellWidth = (availableWidth / maxNumColumns.rounded(.down))
+        print("cellWidth: \(cellWidth)")
+
+        self.itemSize = CGSize(width: cellWidth, height: 70.0)
 
         // Section間の間隔を設定
         self.sectionInset = UIEdgeInsets(top: self.minimumInteritemSpacing, left: .zero, bottom: .zero, right: .zero)
