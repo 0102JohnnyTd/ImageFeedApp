@@ -17,7 +17,6 @@ private enum MosaicSegmentStyle {
 
 class MosaicLayout: UICollectionViewLayout {
     var contentBounds = CGRect.zero
-    // 今のところ全く意味が分からん。
     // レイアウトのキャッシュを保存しとく配列ってこと?
     var cachedAttributes: [UICollectionViewLayoutAttributes] = []
 
@@ -130,4 +129,7 @@ class MosaicLayout: UICollectionViewLayout {
             }
         }
     }
+
+    // CollectionViewのコンテンツサイズを設定
+    override var collectionViewContentSize: CGSize { contentBounds.size }
 }
