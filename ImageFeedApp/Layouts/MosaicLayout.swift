@@ -17,7 +17,7 @@ private enum MosaicSegmentStyle {
 
 class MosaicLayout: UICollectionViewLayout {
     var contentBounds = CGRect.zero
-    // レイアウトのキャッシュを保存しとく配列ってこと?
+    // レイアウトのキャッシュを保存しとく配列?
     var cachedAttributes: [UICollectionViewLayoutAttributes] = []
 
     // レイアウトが無効化される度に呼び出される
@@ -132,4 +132,20 @@ class MosaicLayout: UICollectionViewLayout {
 
     // CollectionViewのコンテンツサイズを設定
     override var collectionViewContentSize: CGSize { contentBounds.size }
+
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        guard let cv = collectionView else { return false }
+        return !newBounds.size.equalTo(cv.bounds.size)
+    }
+
+    // 要求したIndexPathに合う属性を配列から選出
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        cachedAttributes[indexPath.row]
+    }
+
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        cachedAttributes.filter { (attributes: UICollectionViewLayoutAttributes) -> Bool in
+            rect.intersects(attributes.frame)
+        }
+    }
 }
