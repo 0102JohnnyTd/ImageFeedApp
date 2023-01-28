@@ -24,7 +24,6 @@ extension CGRect {
            // 377 * 0.5 = 188.5 繰り上げで189
         let distance = (dimension * fraction).rounded(.up)
 
-
         // ex) fiftyFifty: fromEdge = minXEdge.そこから+189の位置で矩形を分割
         // 戻り値
            // reminder = 矩形を分割した線の内に含まれない残りの領域の矩形。

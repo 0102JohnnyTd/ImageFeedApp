@@ -14,7 +14,7 @@ class AvatarView: UIView {
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: 0, width: 36, height: 44))
 
-        let avatar = #imageLiteral(resourceName: "someone")
+        let avatar = #imageLiteral(resourceName: "zeyn")
         avatarImgView.image = avatar
         avatarImgView.contentMode = .scaleAspectFill
         avatarImgView.autoresizingMask = [.flexibleLeftMargin, .flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin]

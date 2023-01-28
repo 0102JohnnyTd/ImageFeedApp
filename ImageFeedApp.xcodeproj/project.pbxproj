@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CB0381A29828FC900D683B0 /* MosaicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0381929828FC900D683B0 /* MosaicCell.swift */; };
 		1CB70C02296E9B3D00529D23 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB70C01296E9B3D00529D23 /* PersonCell.swift */; };
 		1CB70C0429701A4800529D23 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB70C0329701A4800529D23 /* FeedViewController.swift */; };
 		1CB70C0629701ADA00529D23 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB70C0529701ADA00529D23 /* AvatarView.swift */; };
@@ -19,9 +20,11 @@
 		1CEE1C5B296AFF410091535D /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE1C5A296AFF410091535D /* ColumnFlowLayout.swift */; };
 		1CEE1C5F296D41FF0091535D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE1C5E296D41FF0091535D /* Utilities.swift */; };
 		1CEE1C63296D6A970091535D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE1C62296D6A970091535D /* Person.swift */; };
+		1CF2CD552973D86E00527A9C /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF2CD542973D86E00527A9C /* MosaicLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CB0381929828FC900D683B0 /* MosaicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicCell.swift; sourceTree = "<group>"; };
 		1CB70C01296E9B3D00529D23 /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		1CB70C0329701A4800529D23 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		1CB70C0529701ADA00529D23 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
@@ -36,6 +39,7 @@
 		1CEE1C5A296AFF410091535D /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		1CEE1C5E296D41FF0091535D /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		1CEE1C62296D6A970091535D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		1CF2CD542973D86E00527A9C /* MosaicLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				1CEE1C5A296AFF410091535D /* ColumnFlowLayout.swift */,
+				1CF2CD542973D86E00527A9C /* MosaicLayout.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -61,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				1CB70C01296E9B3D00529D23 /* PersonCell.swift */,
+				1CB0381929828FC900D683B0 /* MosaicCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -199,7 +205,9 @@
 				1CEE1C5F296D41FF0091535D /* Utilities.swift in Sources */,
 				1CEE1C4B296A55110091535D /* FriendsViewController.swift in Sources */,
 				1CEE1C5B296AFF410091535D /* ColumnFlowLayout.swift in Sources */,
+				1CF2CD552973D86E00527A9C /* MosaicLayout.swift in Sources */,
 				1CEE1C47296A55110091535D /* AppDelegate.swift in Sources */,
+				1CB0381A29828FC900D683B0 /* MosaicCell.swift in Sources */,
 				1CEE1C63296D6A970091535D /* Person.swift in Sources */,
 				1CEE1C49296A55110091535D /* SceneDelegate.swift in Sources */,
 				1CB70C0429701A4800529D23 /* FeedViewController.swift in Sources */,
@@ -354,6 +362,8 @@
 				DEVELOPMENT_TEAM = WY23RUM8JH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeedApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使用するお";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "アルバムアクセスするお";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -382,6 +392,8 @@
 				DEVELOPMENT_TEAM = WY23RUM8JH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeedApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ使用するお";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "アルバムアクセスするお";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -6,83 +6,116 @@
 //
 
 import UIKit
+import Photos
 
 private let reuseIdentifier = "Cell"
 
 class FeedViewController: UICollectionViewController {
 
+    var assets: [PHAsset] = []
+    let avatarView = AvatarView()
+
+    var person: Person? {
+        didSet {
+            guard let aPerson = person, let imgName = aPerson.imgName else { return }
+            avatarView.avatarImgView.image = UIImage(named: imgName)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Setup the mosaic collection view.
+        let mosaicLayout = MosaicLayout()
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: mosaicLayout)
+        collectionView.backgroundColor = UIColor.appBackgroundColor
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.alwaysBounceVertical = true
+        collectionView.indicatorStyle = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        // XIBファイルを使用する場合は第一引数にUINibクラスの必要だが、未使用の場合はCellクラスを直接指定する
+        collectionView.register(MosaicCell.self, forCellWithReuseIdentifier: MosaicCell.identifer)
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.view.addSubview(collectionView)
 
-        // Do any additional setup after loading the view.
+        self.navigationItem.titleView = avatarView
+
+        // Request authorization to access the Photo Library.
+        PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) in
+            if status == .authorized {
+                let results = PHAsset.fetchAssets(with: .image, options: nil)
+                results.enumerateObjects({asset, index, stop in
+                    self.assets.append(asset)
+                })
+
+                DispatchQueue.main.async {
+                    // Reload collection view once we've determined our Photos permissions.
+                    self.collectionView.reloadData()
+                }
+            } else {
+                self.displayPhotoAccessDeniedAlert()
+            }
+        }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if collectionView.numberOfItems(inSection: 0) > 0 {
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        }
     }
-    */
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        // Always show 50K cells so scrolling performance can be tested.
+        return 100
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MosaicCell.identifer, for: indexPath) as? MosaicCell
+        else { preconditionFailure("Failed to load collection view cell") }
+
+        if !assets.isEmpty {
+            let assetIndex = indexPath.item % assets.count
+            let asset = assets[assetIndex]
+            let assetIdentifier = asset.localIdentifier
+
+            cell.assetIdentifier = assetIdentifier
+
+            PHImageManager.default().requestImage(for: asset, targetSize: cell.frame.size,
+                                                  contentMode: .aspectFill, options: nil) { (image, hashable)  in
+                if let loadedImage = image, let cellIdentifier = cell.assetIdentifier {
+
+                    // Verify that the cell still has the same asset identifier,
+                    // so the image in a reused cell is not overwritten.
+                    if cellIdentifier == assetIdentifier {
+                        cell.imageView.image = loadedImage
+                    }
+                }
+            }
+        }
+
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
+    private func displayPhotoAccessDeniedAlert() {
+        let message = "Access to photos has been previously denied by the user. Please enable photo access for this app in Settings -> Privacy."
+        let alertController = UIAlertController(title: "Photo Access",
+                                                message: message,
+                                                preferredStyle: .alert)
+        let openSettingsAction = UIAlertAction(title: "Settings", style: .default) { (_) in
+            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                // Take the user to the Settings app to change permissions.
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+            }
+        }
+        alertController.addAction(openSettingsAction)
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+
+        self.present(alertController, animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }

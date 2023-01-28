@@ -56,4 +56,17 @@ extension FriendsViewController: UICollectionViewDataSource {
     }
 }
 
-extension FriendsViewController: UICollectionViewDelegate {}
+extension FriendsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // コードのみでViewを構築する際は画面のインスタンス生成時にLayoutも初期化しておかないとアプリがクラッシュする
+        let feedVC = FeedViewController(collectionViewLayout: MosaicLayout())
+
+        if let indexPaths = collectionView.indexPathsForSelectedItems {
+            let indexPath = indexPaths[0]
+            print("\(String(describing: indexPath))")
+            let person = people[indexPath.row] as Person
+            feedVC.person = person
+            navigationController?.pushViewController(feedVC, animated: true)
+        }
+    }
+}

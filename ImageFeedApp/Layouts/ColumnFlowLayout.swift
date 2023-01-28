@@ -21,7 +21,7 @@ final class ColumnFlowLayout: UICollectionViewFlowLayout {
         let minColumnWidth = CGFloat(300)
         // 最大列数
         let maxNumColumns = availableWidth / minColumnWidth
-        // 少数を切り捨てたmaxNumColumnsで　availableWidthを割ってCellの幅を取得
+        // 少数を切り捨てたmaxNumColumnsでavailableWidthを割ってCellの幅を取得
         let cellWidth = (availableWidth / maxNumColumns.rounded(.down))
         print("cellWidth: \(cellWidth)")
 
