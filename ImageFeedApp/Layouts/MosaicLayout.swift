@@ -133,19 +133,24 @@ class MosaicLayout: UICollectionViewLayout {
     // CollectionViewのコンテンツサイズを設定
     override var collectionViewContentSize: CGSize { contentBounds.size }
 
+    // レイアウトの更新が必要か否かをレイアウトオブジェクトに尋ねる。
+    // レイアウトが無効化(ex:デバイスの向き変更)された時やScroll時に都度呼ばれる
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        print(#function)
         guard let cv = collectionView else { return false }
         return !newBounds.size.equalTo(cv.bounds.size)
     }
 
-    // 要求したIndexPathに合う属性を配列から選出
+    // 要求したIndexPathに合うUICollectionViewLayoutAttributes(レイアウト属性)を配列から選出
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         cachedAttributes[indexPath.row]
     }
 
+    // rectの範囲内に存在するアイテムのAttributesを返す
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         cachedAttributes.filter { (attributes: UICollectionViewLayoutAttributes) -> Bool in
-            rect.intersects(attributes.frame)
+            print(#function) 
+            return rect.intersects(attributes.frame)
         }
     }
 }
